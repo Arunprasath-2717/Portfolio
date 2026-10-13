@@ -40,3 +40,7 @@ Thumbs.db
 
 # OS files
 Desktop.ini
+
+# Impeccable local state
+.impeccable/review/
+.impeccable/config.local.json

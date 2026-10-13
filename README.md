@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arun Prasath P, portfolio
 
-## Getting Started
+Vite + React 19 + TypeScript single-page site with GSAP/Lenis motion and a mailto contact form.
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # typecheck + production build into dist/
+npm run preview    # serve dist/ on http://localhost:4173
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Edit content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Every word on the site lives in `src/content.ts`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `PROFILE`: name, role, email, social links, `resume` (put a PDF in `public/` and set `'/resume.pdf'`).
+- `FLAGSHIPS`: the four case-study projects (routes `/work/<slug>`).
+- `WORKS`: every project on the board.
+- `RAIL`: education, internships and events. `CAPABILITIES`, `CERTS`: skills and certifications.
 
-## Learn More
+Interactive case-study demos are in `src/demos/Demos.tsx`. Design rules are in `DESIGN.md`.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The contact form has no backend. Submitting it opens the visitor's mail app with a pre-filled `mailto:` to `arunprasath6035@gmail.com` (set in `PROFILE.email`). A "Copy email" button is the fallback for visitors without a mail app. No env vars or secrets are needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy (Vercel) on www.arunprasath.me
 
-## Deploy on Vercel
+1. Import the repo in Vercel (framework preset: Vite). No environment variables are required.
+2. Project, Settings, Domains: add `www.arunprasath.me` and `arunprasath.me` (redirect the apex to `www`).
+3. At your domain registrar, add the DNS records Vercel shows (typically `CNAME www -> cname.vercel-dns.com` and an `A` record for the apex).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The canonical URL is set in `index.html`, `src/lib/meta.ts`, `public/robots.txt` and `public/sitemap.xml`.
